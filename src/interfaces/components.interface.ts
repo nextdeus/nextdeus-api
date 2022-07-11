@@ -4,4 +4,6 @@ export interface Component {
   path: string;
   tags: string;
   type: string;
+  public: boolean;
+  website_id: string;
 }

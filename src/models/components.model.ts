@@ -7,6 +7,8 @@ export class ComponentModel extends Model<Component> implements Component {
   path: string;
   tags: string;
   type: string;
+  public: boolean;
+  website_id: string;
 }
 
 export default function (sequelize: Sequelize): typeof ComponentModel {
@@ -30,6 +32,17 @@ export default function (sequelize: Sequelize): typeof ComponentModel {
       type: {
         type: DataTypes.ENUM('section', 'header', 'footer', 'metadata'),
         defaultValue: 'section',
+      },
+      public: {
+        type: DataTypes.BOOLEAN,
+      },
+      website_id: {
+        type: DataTypes.UUID,
+        references: {
+          model: 'websites',
+          key: 'id',
+        },
+        allowNull: true,
       },
     },
     {
