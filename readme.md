@@ -42,11 +42,6 @@ It enforces a consistent style by parsing your code and re-printing it with its 
 
 <img src="https://user-images.githubusercontent.com/42952358/126604937-4ef50b61-b7e4-4635-b3c9-3c94dd6b06fa.png" alt="Formatter Setting" />
 
-## ♻️ NGINX :: Web Server
-
-
-Modify `nginx.conf` file to your source code.
-
 ## 🗂 Code Structure
 
 ```bash
