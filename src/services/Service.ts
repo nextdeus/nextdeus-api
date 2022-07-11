@@ -1,12 +1,20 @@
 import DB from '@databases';
-import { EmptyBodyException, HttpException, MissingFieldException, MissingIdException, NotFoundDeleteException, NotFoundUpdateException, RessourceNotFoundException } from '@exceptions/HttpException';
+import {
+  EmptyBodyException,
+  HttpException,
+  MissingFieldException,
+  MissingIdException,
+  NotFoundDeleteException,
+  NotFoundUpdateException,
+  RessourceNotFoundException,
+} from '@exceptions/HttpException';
 import { isEmpty } from '@utils/util';
 
 abstract class Service {
   public model: string;
   public required_keys?: string[] = [];
   public unique_keys?: string[] = [];
-  public include?: { as:string, model: any }[] = [];
+  public include?: { as: string; model: any }[] = [];
 
   constructor(model: string) {
     this.model = model;
@@ -14,9 +22,9 @@ abstract class Service {
 
   public async findAll(): Promise<any[]> {
     const items: any[] = await DB[this.model].findAll({
-        raw: true,
-        nest: true,
-        include: this.include
+      raw: true,
+      nest: true,
+      include: this.include,
     });
     return items;
   }
@@ -30,16 +38,14 @@ abstract class Service {
       }
     }
 
-      let where = {};
-      for (const key of this.unique_keys) {
-        where[key] = data[key]
-      }
-      const check: any = await DB[this.model].findOne({ 
-          where: where
-      });
-      if (check) throw new HttpException(409, `Can't create this ressource because it already exist`);
-    
-    
+    const where = {};
+    for (const key of this.unique_keys) {
+      where[key] = data[key];
+    }
+    const check: any = await DB[this.model].findOne({
+      where: where,
+    });
+    if (check) throw new HttpException(409, `Can't create this ressource because it already exist`);
 
     const item: any = await DB[this.model].create(data);
     return item;
@@ -52,11 +58,11 @@ abstract class Service {
     if (count < 1) throw new NotFoundDeleteException();
   }
 
-  public async update(id:string, data: any): Promise<void> {
-    const [ affectedCount ] = await DB[this.model].update(data, {
-        where: {
-            id: id
-        }
+  public async update(id: string, data: any): Promise<void> {
+    const [affectedCount] = await DB[this.model].update(data, {
+      where: {
+        id: id,
+      },
     });
 
     if (affectedCount < 1) throw new NotFoundUpdateException();
@@ -66,15 +72,14 @@ abstract class Service {
     if (isEmpty(id)) throw new EmptyBodyException();
 
     const item = await DB[this.model].findOne({
-        where: {
-            id: id
-        }
+      where: {
+        id: id,
+      },
     });
     if (!item) throw new RessourceNotFoundException();
-    
+
     return item;
   }
-
 }
 
 export default Service;

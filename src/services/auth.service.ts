@@ -11,7 +11,7 @@ class AuthService {
   public users = DB.Users;
 
   public async signup(userData: any): Promise<User> {
-    if (isEmpty(userData)) throw new HttpException(400, "Your email or your password is empty");
+    if (isEmpty(userData)) throw new HttpException(400, 'Your email or your password is empty');
 
     const findUser: User = await this.users.findOne({ where: { email: userData.email } });
     if (findUser) throw new HttpException(409, `You're email ${userData.email} already exists`);

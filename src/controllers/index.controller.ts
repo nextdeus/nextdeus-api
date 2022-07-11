@@ -4,7 +4,7 @@ class IndexController {
   public index = (req: Request, res: Response, next: NextFunction) => {
     try {
       res.status(200).json({
-        message: "serveur opérationnel"
+        message: 'serveur opérationnel',
       });
     } catch (error) {
       next(error);

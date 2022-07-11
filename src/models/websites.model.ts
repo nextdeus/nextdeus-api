@@ -1,6 +1,5 @@
-import { Sequelize, DataTypes, Model, ForeignKey } from 'sequelize';
+import { Sequelize, DataTypes, Model } from 'sequelize';
 import { Website } from '@/interfaces/websites.interface';
-import { User } from "@interfaces/users.interface";
 
 export class WebsiteModel extends Model<Website> implements Website {
   public id: string;
@@ -17,28 +16,28 @@ export default function (sequelize: Sequelize): typeof WebsiteModel {
         type: DataTypes.UUID,
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
-        allowNull: false
+        allowNull: false,
       },
       title: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       template: {
-        type: DataTypes.BOOLEAN
+        type: DataTypes.BOOLEAN,
       },
       theme_id: {
-        type: DataTypes.UUID, /*
+        type: DataTypes.UUID /*
         references: {
           model: 'themes',
           key: 'id'
-        }*/
+        }*/,
       },
       user_id: {
         type: DataTypes.UUID,
         references: {
           model: 'users',
-          key: 'id'
-        }
-      }
+          key: 'id',
+        },
+      },
     },
     {
       tableName: 'websites',

@@ -1,21 +1,26 @@
 import { hash } from 'bcrypt';
 import DB from '@databases';
-import { EmptyBodyException, HttpException, MissingFieldException, NotFoundDeleteException, NotFoundUpdateException, RessourceNotFoundException } from '@exceptions/HttpException';
+import {
+  EmptyBodyException,
+  HttpException,
+  MissingFieldException,
+  NotFoundUpdateException,
+  RessourceNotFoundException,
+} from '@exceptions/HttpException';
 import { User } from '@interfaces/users.interface';
 import { isEmpty } from '@utils/util';
 import Service from './Service';
 
 class UserService extends Service {
-
   constructor() {
-    super("Users");
+    super('Users');
   }
 
   public async findAll(): Promise<User[]> {
     const allUser: User[] = await DB.Users.findAll({
-        attributes: {
-            exclude: ['password']
-        }
+      attributes: {
+        exclude: ['password'],
+      },
     });
     return allUser;
   }
@@ -25,11 +30,11 @@ class UserService extends Service {
 
     const findUser: User = await DB.Users.findOne({
       where: {
-        id: id
+        id: id,
       },
       attributes: {
-        exclude: ['password']
-      }
+        exclude: ['password'],
+      },
     });
     if (!findUser) throw new RessourceNotFoundException();
 
@@ -42,15 +47,15 @@ class UserService extends Service {
     const findUser: User = await DB.Users.findOne({ where: { email: data.email } });
     if (findUser) throw new HttpException(409, `You're email ${data.email} already exists`);
 
-    if (isEmpty(data.password)) throw new MissingFieldException("password");
-    if (isEmpty(data.email)) throw new MissingFieldException("email");
+    if (isEmpty(data.password)) throw new MissingFieldException('password');
+    if (isEmpty(data.email)) throw new MissingFieldException('email');
 
     const hashedPassword = await hash(data.password, 10);
     const createUserData: User = await DB.Users.create({ ...data, password: hashedPassword });
     return createUserData;
   }
 
-  public async update(id:string, data: any): Promise<void> {
+  public async update(id: string, data: any): Promise<void> {
     if (isEmpty(data)) throw new EmptyBodyException();
 
     if (data.password) {
@@ -58,10 +63,10 @@ class UserService extends Service {
       data.password = password;
     }
 
-    const [ affectedCount ] = await DB.Users.update(data, {
-        where: {
-            id: id
-        }
+    const [affectedCount] = await DB.Users.update(data, {
+      where: {
+        id: id,
+      },
     });
 
     if (affectedCount < 1) throw new NotFoundUpdateException();

@@ -22,6 +22,31 @@
 | Build system     | build:             |
 | Previous commit  | revert:            |
 
+## ✨ ESLint, Prettier :: Code Formatter
+
+[Prettier](https://prettier.io/) is an opinionated code formatter.
+
+[ESLint](https://eslint.org/), Find and fix problems in your JavaScript code
+
+It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
+
+1. Install [VSCode](https://code.visualstudio.com/) Extension [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+2. `CMD` + `Shift` + `P` (Mac Os) or `Ctrl` + `Shift` + `P` (Windows)
+
+3. Format Selection With
+
+4. Configure Default Formatter...
+
+5. Prettier - Code formatter
+
+<img src="https://user-images.githubusercontent.com/42952358/126604937-4ef50b61-b7e4-4635-b3c9-3c94dd6b06fa.png" alt="Formatter Setting" />
+
+## ♻️ NGINX :: Web Server
+
+
+Modify `nginx.conf` file to your source code.
+
 ## 🗂 Code Structure
 
 ```bash
@@ -106,4 +131,3 @@
 - Database
   - ![](https://img.shields.io/badge/-MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=fff)
 
-> [Simple Icons](https://simpleicons.org/)

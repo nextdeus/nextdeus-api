@@ -17,24 +17,24 @@ export default function (sequelize: Sequelize): typeof UserModel {
         type: DataTypes.UUID,
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
-        allowNull: false
+        allowNull: false,
       },
       role: {
-        type: DataTypes.ENUM("user", "admin"),
-        defaultValue: "user"
+        type: DataTypes.ENUM('user', 'admin'),
+        defaultValue: 'user',
       },
       email: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       password: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       first_name: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       last_name: {
-        type: DataTypes.STRING
-      }
+        type: DataTypes.STRING,
+      },
     },
     {
       tableName: 'users',
