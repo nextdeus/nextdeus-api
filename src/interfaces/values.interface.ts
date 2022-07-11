@@ -3,7 +3,7 @@ export interface Values {
   provider_id: string;
   input_id: string;
   language_id: string;
-  media_id: string;
+  file_id: string;
   text: string;
   html: string;
   url: string;

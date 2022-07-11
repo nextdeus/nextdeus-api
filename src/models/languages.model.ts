@@ -28,7 +28,7 @@ export default function (sequelize: Sequelize): typeof LanguageModel {
       },
     },
     {
-      tableName: 'components',
+      tableName: 'languages',
       sequelize,
     },
   );

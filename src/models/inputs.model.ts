@@ -64,7 +64,7 @@ export default function (sequelize: Sequelize): typeof InputModel {
       },
     },
     {
-      tableName: 'components',
+      tableName: 'inputs',
       sequelize,
     },
   );
