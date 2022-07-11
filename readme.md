@@ -12,12 +12,15 @@
 
 | When             | Commit Message     |
 | :--------------- | :----------------- |
-| Add Feature      | ✨ Add Feature     |
-| Fix Bug          | 🐞 Fix Bug         |
-| Refactoring Code | 🛠 Refactoring Code |
-| Install Package  | 📦 Install Package |
-| Fix Readme       | 📚 Fix Readme      |
-| Update Version   | 🌼 Update Version  |
+| Add Feature      | feat:              |
+| Fix Bug          | fix:               |
+| Refactoring Code | refactor:          |
+| Install Package  | chore:             |
+| Fix Readme       | docs:              |
+| Add tests        | test:              |
+| Performance      | perf:              |
+| Build system     | build:             |
+| Previous commit  | revert:            |
 
 ## 🗂 Code Structure
 
