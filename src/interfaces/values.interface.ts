@@ -1,4 +1,4 @@
-export interface Values {
+export interface Value {
   id: string;
   provider_id: string;
   input_id: string;

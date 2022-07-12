@@ -31,7 +31,7 @@ export default function (sequelize: Sequelize): typeof StyleModel {
       author_id: {
         type: DataTypes.UUID,
         references: {
-          model: 'user',
+          model: 'users',
           key: 'id',
         },
         allowNull: false,
