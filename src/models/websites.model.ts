@@ -25,11 +25,11 @@ export default function (sequelize: Sequelize): typeof WebsiteModel {
         type: DataTypes.BOOLEAN,
       },
       theme_id: {
-        type: DataTypes.UUID /*
+        type: DataTypes.UUID,
         references: {
           model: 'themes',
-          key: 'id'
-        }*/,
+          key: 'id',
+        },
       },
       user_id: {
         type: DataTypes.UUID,

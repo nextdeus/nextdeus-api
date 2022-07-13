@@ -1,4 +1,4 @@
-import { WebsiteModel } from '@/models/websites.model';
+import DB from '@/databases';
 import Service from '@/services/Service';
 
 class PagesService extends Service {
@@ -8,7 +8,7 @@ class PagesService extends Service {
     this.required_keys = ['title', 'slug', 'website_id'];
     this.include = [
       {
-        model: WebsiteModel,
+        model: DB.Websites,
         as: 'website',
       },
     ];

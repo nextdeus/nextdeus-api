@@ -19,7 +19,7 @@ export default function (sequelize: Sequelize): typeof ProvidersModel {
         allowNull: false,
       },
       order: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.DECIMAL,
       },
       component_id: {
         type: DataTypes.UUID,
