@@ -40,7 +40,12 @@ export class MissingIdException extends HttpException {
 }
 
 export class MissingFieldException extends HttpException {
-  constructor(field: string) {
-    super(400, `The following field is missing from the body: ${field}`);
+  constructor(fields: string[]) {
+    const message: string =
+      fields.length === 1
+        ? `The following field is missing from the body: ${fields[0]}`
+        : `The following fields are missing from the body: ${fields.join(', ')}`;
+
+    super(400, message);
   }
 }

@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import Service from '@/services/Service';
 
-abstract class Controller {
-  public service?: Service;
+export abstract class CRUDController {
+  public service?: any;
 
   public getAll = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -54,5 +53,3 @@ abstract class Controller {
     }
   };
 }
-
-export default Controller;

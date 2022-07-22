@@ -1,10 +1,11 @@
 import DB from '@/databases';
-import Service from './Service';
+import { CRUDService } from '.';
 
-class ProvidersService extends Service {
+class ProvidersService extends CRUDService {
   constructor() {
     super('Providers');
-    this.required_keys = ['page', 'component'];
+    this.required_keys = ['page_id', 'component_id'];
+    this.unique_keys = ['order', 'component_id'];
     this.include = [
       {
         model: DB.Pages,
@@ -17,6 +18,12 @@ class ProvidersService extends Service {
       {
         model: DB.Components,
         as: 'component',
+        include: [
+          {
+            model: DB.Inputs,
+            as: 'inputs',
+          },
+        ],
       },
     ];
   }

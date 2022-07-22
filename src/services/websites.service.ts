@@ -1,7 +1,7 @@
 import { UserModel } from '@/models/users.model';
-import Service from './Service';
+import { CRUDService } from '.';
 
-class WebsitesService extends Service {
+class WebsitesService extends CRUDService {
   constructor() {
     super('Websites');
     this.unique_keys = ['title', 'user_id'];

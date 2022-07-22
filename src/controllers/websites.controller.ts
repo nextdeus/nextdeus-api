@@ -1,4 +1,4 @@
-import CRUDController from './Controller';
+import { CRUDController } from '.';
 import WebsitesService from '@services/websites.service';
 
 class WebsitesController extends CRUDController {

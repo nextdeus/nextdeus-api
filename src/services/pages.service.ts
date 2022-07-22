@@ -1,7 +1,8 @@
 import DB from '@/databases';
-import Service from '@/services/Service';
+import { Provider } from '@/interfaces/providers.interface';
+import { CRUDService } from '.';
 
-class PagesService extends Service {
+class PagesService extends CRUDService {
   constructor() {
     super('Pages');
     this.unique_keys = ['slug', 'website_id'];
@@ -12,6 +13,34 @@ class PagesService extends Service {
         as: 'website',
       },
     ];
+  }
+
+  async getProvidersByPageId(page_id: string): Promise<Provider[]> {
+    const items: Provider[] = await DB.Providers.findAll({
+      raw: false,
+      nest: true,
+      where: {
+        page_id: page_id,
+      },
+      include: [
+        {
+          model: DB.Styles,
+          as: 'style',
+        },
+        {
+          model: DB.Components,
+          as: 'component',
+          include: [
+            {
+              model: DB.Inputs,
+              as: 'inputs',
+            },
+          ],
+        },
+      ],
+    });
+
+    return items;
   }
 }
 

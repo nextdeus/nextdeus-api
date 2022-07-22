@@ -9,9 +9,9 @@ import {
 } from '@exceptions/HttpException';
 import { User } from '@interfaces/users.interface';
 import { isEmpty } from '@utils/util';
-import Service from './Service';
+import { CRUDService } from '.';
 
-class UserService extends Service {
+class UserService extends CRUDService {
   constructor() {
     super('Users');
   }
@@ -47,8 +47,8 @@ class UserService extends Service {
     const findUser: User = await DB.Users.findOne({ where: { email: data.email } });
     if (findUser) throw new HttpException(409, `You're email ${data.email} already exists`);
 
-    if (isEmpty(data.password)) throw new MissingFieldException('password');
-    if (isEmpty(data.email)) throw new MissingFieldException('email');
+    if (isEmpty(data.password)) throw new MissingFieldException(['password']);
+    if (isEmpty(data.email)) throw new MissingFieldException(['email']);
 
     const hashedPassword = await hash(data.password, 10);
     const createUserData: User = await DB.Users.create({ ...data, password: hashedPassword });

@@ -5,3 +5,7 @@ export interface Provider {
   order: number;
   style_id: string;
 }
+
+export interface ProviderData extends Provider {
+  components: object[];
+}

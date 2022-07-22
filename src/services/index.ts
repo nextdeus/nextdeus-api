@@ -10,11 +10,11 @@ import {
 } from '@exceptions/HttpException';
 import { isEmpty } from '@utils/util';
 
-abstract class Service {
+export abstract class CRUDService {
   public model: string;
   public required_keys?: string[] = [];
   public unique_keys?: string[] = [];
-  public include?: { as: string; model: any }[] = [];
+  public include?: { as: string; model: any; include?: object[] }[] = [];
 
   constructor(model: string) {
     this.model = model;
@@ -22,7 +22,7 @@ abstract class Service {
 
   public async findAll(): Promise<any[]> {
     const items: any[] = await DB[this.model].findAll({
-      raw: true,
+      raw: false,
       nest: true,
       include: this.include,
     });
@@ -32,11 +32,13 @@ abstract class Service {
   public async create(data: any): Promise<any> {
     if (isEmpty(data)) throw new EmptyBodyException();
 
+    const missing_keys = [];
     for (const key of this.required_keys) {
       if (isEmpty(data[key])) {
-        throw new MissingFieldException(key);
+        missing_keys.push(key);
       }
     }
+    if (missing_keys.length) throw new MissingFieldException(missing_keys);
 
     const where = {};
     for (const key of this.unique_keys) {
@@ -81,5 +83,3 @@ abstract class Service {
     return item;
   }
 }
-
-export default Service;

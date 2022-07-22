@@ -1,7 +1,7 @@
 import ComponentsService from '@/services/components.service';
-import Controller from './Controller';
+import { CRUDController } from '.';
 
-class ComponentsController extends Controller {
+class ComponentsController extends CRUDController {
   public service = new ComponentsService();
 }
 

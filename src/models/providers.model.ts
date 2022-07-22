@@ -20,6 +20,7 @@ export default function (sequelize: Sequelize): typeof ProvidersModel {
       },
       order: {
         type: DataTypes.DECIMAL,
+        defaultValue: 1,
       },
       component_id: {
         type: DataTypes.UUID,
